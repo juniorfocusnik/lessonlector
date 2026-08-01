@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game — Lesson Lector</title>
+<meta name="description" content="Play a live multiplayer quiz game with friends on Lesson Lector.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+<div class="glow-orb orb-3"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Lesson Lector</span>
+    </a>
+    <nav class="main-nav">
+      <a href="../index.html" class="nav-link">Home</a>
+    </nav>
+    <div class="header-actions" id="auth-actions"></div>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="app-container-narrow" id="game-app">
+
+    <section id="view-landing" class="game-view">
+      <h1 class="app-title">Game</h1>
+      <p class="app-subtitle">Play a live quiz with friends — no friending required, just a code.</p>
+      <div class="game-landing-choices">
+        <button type="button" class="btn btn-primary btn-lg" id="btn-show-create">Create a Game</button>
+        <button type="button" class="btn btn-outline btn-lg" id="btn-show-join">Join a Game</button>
+      </div>
+    </section>
+
+    <section id="view-create" class="game-view" hidden>
+      <a href="#" class="back-link" id="create-back">← Back</a>
+      <h1 class="app-title">Create a Game</h1>
+      <form id="create-form" novalidate>
+        <div class="form-group">
+          <label>End Condition</label>
+          <div class="radio-row">
+            <label class="radio-option"><input type="radio" name="end-type" value="time" checked> Time Limit</label>
+            <label class="radio-option"><input type="radio" name="end-type" value="points"> First to ___ Points</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="end-value" id="end-value-label">Minutes</label>
+          <input type="number" id="end-value" min="1" step="1" value="5" required>
+        </div>
+        <div class="form-group">
+          <div class="subject-label-row">
+            <label>Subjects — choose at least one of the 48 webs</label>
+            <span class="subject-select-actions">
+              <button type="button" class="inline-link" id="subjects-select-all">Select All</button>
+              <button type="button" class="inline-link" id="subjects-clear-all">Clear All</button>
+            </span>
+          </div>
+          <div class="subject-grid-scroll">
+            <div class="subject-grid" id="subject-grid"></div>
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="random-names">
+          <label for="random-names">Give players random names instead of letting them choose a nickname</label>
+        </div>
+        <p class="form-alert" id="create-alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block" id="create-submit">Create Game</button>
+      </form>
+    </section>
+
+    <section id="view-join" class="game-view" hidden>
+      <a href="#" class="back-link" id="join-back">← Back</a>
+      <h1 class="app-title">Join a Game</h1>
+      <form id="join-code-form" novalidate>
+        <div class="form-group">
+          <label for="join-code">Game Code</label>
+          <input type="text" id="join-code" maxlength="10" placeholder="10-character code" required autocomplete="off">
+        </div>
+        <p class="form-alert" id="join-alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block">Find Game</button>
+      </form>
+      <form id="join-nickname-form" novalidate hidden>
+        <div class="form-group">
+          <label for="join-nickname">Choose a Nickname</label>
+          <input type="text" id="join-nickname" maxlength="20" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Join Game</button>
+      </form>
+    </section>
+
+    <section id="view-host-lobby" class="game-view" hidden>
+      <h1 class="app-title">Game Lobby</h1>
+      <div class="game-code-display">
+        <span>Game Code</span>
+        <div class="game-code-value" id="lobby-code"></div>
+        <button type="button" class="btn btn-outline btn-sm" id="copy-code-btn">Copy Code</button>
+      </div>
+      <p class="app-subtitle" id="lobby-player-count">0 players joined</p>
+      <div class="player-box-grid" id="lobby-players"></div>
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="start-game-btn" disabled>Need at least 2 players</button>
+    </section>
+
+    <section id="view-host-active" class="game-view" hidden>
+      <h1 class="app-title">Game in Progress</h1>
+      <p class="game-timer" id="host-timer"></p>
+      <table class="leaderboard-table" id="host-leaderboard-table">
+        <thead><tr><th>Rank</th><th>Player</th><th>Score</th></tr></thead>
+        <tbody id="host-leaderboard-body"></tbody>
+      </table>
+      <p class="empty-state" id="host-leaderboard-hidden" hidden>🤫 Leaderboard hidden — it's getting close!</p>
+      <button type="button" class="btn btn-outline btn-block" id="end-game-btn">End Game Now</button>
+    </section>
+
+    <section id="view-player-waiting" class="game-view" hidden>
+      <div class="player-waiting-card">
+        <h1 id="player-waiting-msg"></h1>
+        <p class="app-subtitle">Waiting for the host to start the game…</p>
+      </div>
+    </section>
+
+    <section id="view-player-active" class="game-view" hidden>
+      <div class="question-header">
+        <span id="player-score-display">Score: 0</span>
+        <span class="question-subject-tag" id="question-subject-tag"></span>
+      </div>
+      <div class="question-card">
+        <h2 id="question-text"></h2>
+        <div class="quiz-options" id="question-options"></div>
+        <p class="quiz-feedback" id="question-feedback" hidden></p>
+      </div>
+    </section>
+
+    <section id="view-end" class="game-view" hidden>
+      <div class="confetti-layer" id="confetti-layer"></div>
+      <h1 class="app-title">Game Over!</h1>
+      <div class="podium" id="podium"></div>
+      <div class="final-leaderboard" id="final-leaderboard" hidden>
+        <table class="leaderboard-table">
+          <thead><tr><th>Rank</th><th>Player</th><th>Score</th><th>Gems</th></tr></thead>
+          <tbody id="final-leaderboard-body"></tbody>
+        </table>
+      </div>
+      <a href="../game/index.html" class="btn btn-primary btn-block">Back to Game Home</a>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="brand footer-brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Lesson Lector</span>
+    </div>
+    <p class="footer-copy">Lesson Lector by Denys Kyrylenko. Made for learners, not shareholders.</p>
+  </div>
+</footer>
+
+<script type="module" src="../js/auth-ui.js"></script>
+<script type="module" src="../js/game.js"></script>
+</body>
+</html>

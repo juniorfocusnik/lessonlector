@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Lector — Learn by Doing, Free Forever</title>
+<meta name="description" content="Lesson Lector is a free, interactive learning platform spanning Maths, Science, Music and Art, Programming, Languages, and Humanities for years 3-13 — plus live multiplayer quiz games with friends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
+<div class="glow-orb orb-3"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Lesson Lector</span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link active">Home</a>
+    </nav>
+    <div class="header-actions" id="auth-actions"></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Free. Forever. For everyone.</p>
+      <p class="welcome-banner" id="welcome-banner" hidden></p>
+      <h1 class="hero-title">
+        Learn by <span class="glow-text">doing</span>,<br>
+        not by <span class="glow-text-alt">watching</span>.
+      </h1>
+      <p class="hero-sub">
+        Lesson Lector is a free, interactive way to master Maths, Science, Music and Art,
+        Programming, Languages, and Humanities — 48 skill-tree webs spanning years 3 to 13,
+        one bite-sized, hands-on lesson at a time. Then put it to the test in a live
+        multiplayer quiz game with friends.
+      </p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn btn-primary">Start Learning Free</a>
+        <a href="#courses" class="btn btn-outline">Explore Subjects</a>
+      </div>
+      <p class="hero-note">No credit card. No catch. Just curiosity.</p>
+    </div>
+  </section>
+
+  <section class="logos-strip">
+    <p class="logos-label">Six subjects, 48 skill trees, years 3 through 13</p>
+    <div class="logos-row">
+      <span>Maths</span>
+      <span>Science</span>
+      <span>Music and Art</span>
+      <span>Programming</span>
+      <span>Languages</span>
+      <span>Humanities</span>
+    </div>
+  </section>
+
+  <section class="features" id="courses">
+    <div class="section-head">
+      <h2>Why learners glow up with us</h2>
+      <p>Interactive lessons that make hard ideas click — built for the way your brain actually learns.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon icon-blue">◈</div>
+        <h3>Truly Interactive Lessons</h3>
+        <p>Multiple choice, true/false, matching tables, drag-and-drop, and resizable shapes — every concept is a puzzle to solve, not a lecture to sit through.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-purple">◆</div>
+        <h3>100% Free</h3>
+        <p>No paywalls, no premium tiers, no trial that expires. Every subject, every web, every lesson, unlocked from day one.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-pink">◇</div>
+        <h3>6 Subjects, 48 Skill Trees</h3>
+        <p>Maths, Science, Music and Art, Programming, Languages, and Humanities — spanning years 3 to 13, each subject its own branching web of lessons, tests, and projects.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-blue">◉</div>
+        <h3>Live Multiplayer Games</h3>
+        <p>Host or join a live quiz with friends using just a code — no friending required. Answer fast, climb the in-game leaderboard, and earn gems for every correct answer.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-purple">◐</div>
+        <h3>Gems, Medals & Stars</h3>
+        <p>Earn gems for every lesson, medals for every test, and a star for completing an entire subject's final exam — then see how you stack up on the global leaderboard.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon icon-pink">◑</div>
+        <h3>Friends & Chat</h3>
+        <p>Add friends, chat one-on-one, and check out each other's profiles — all built into the same free account, with block and unfriend always in your control.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-band" id="get-started">
+    <div class="cta-band-inner">
+      <h2>Your curiosity deserves better than a paywall.</h2>
+      <p>Join Lesson Lector today and start your first lesson in under a minute.</p>
+      <a href="signup/index.html" class="btn btn-primary btn-lg">Create Your Free Account</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="brand footer-brand">
+      <span class="brand-mark">◆</span>
+      <span class="brand-name">Lesson Lector</span>
+    </div>
+    <p class="footer-copy">Lesson Lector by Denys Kyrylenko. Made for learners, not shareholders.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script type="module" src="js/auth-ui.js"></script>
+</body>
+</html>
